@@ -1,0 +1,42 @@
+{
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.outDir": "build",
+  "latex-workshop.message.error.show": true,
+  "latex-workshop.message.warning.show": true,
+
+
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk (lualatex)",
+      "command": "latexmk",
+      "args": ["-lualatex","-synctex=1","-interaction=nonstopmode","-file-line-error","-outdir=build","%DOC%"],
+      "env": {
+        "PATH": "/Library/TeX/texbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin:${env:PATH}"
+      }
+    },
+    {
+      "name": "latexmk (xelatex)",
+      "command": "latexmk",
+      "args": ["-xelatex","-synctex=1","-interaction=nonstopmode","-file-line-error","-outdir=build","%DOC%"],
+      "env": {
+        "PATH": "/Library/TeX/texbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin:${env:PATH}"
+      }
+    },
+    {
+      "name": "latexmk (pdflatex)",
+      "command": "latexmk",
+      "args": ["-pdf","-synctex=1","-interaction=nonstopmode","-file-line-error","-outdir=build","%DOC%"],
+      "env": {
+        "PATH": "/Library/TeX/texbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin:${env:PATH}"
+      }
+    }
+  ],
+
+  "latex-workshop.latex.recipes": [
+    { "name": "LuaLaTeX", "tools": ["latexmk (lualatex)"] },
+    { "name": "XeLaTeX",  "tools": ["latexmk (xelatex)"]  },
+    { "name": "PDFLaTeX", "tools": ["latexmk (pdflatex)"] }
+  ],
+  "latex-workshop.latex.recipe.default": "lastUsed"
+}
