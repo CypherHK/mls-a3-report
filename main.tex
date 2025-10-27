@@ -356,17 +356,19 @@ Four quantization methods applied to each architecture variant:
 
 
 \subsubsection{Post-Training Quantization (PTQ) INT8}
+\includegraphics[width=0.8\textwidth]{charts/int8_quantization_comparison_energy.png}
+
 \begin{itemize}
     \item Method: TFLite converter with representative dataset (500 samples)
-    \item Result: \textbf{FAILED} - 10.7\% accuracy (catastrophic degradation)
-    \item Cause: MobileNetV2's depthwise separable convolutions incompatible with uniform INT8
+    \item Result: \textbf{DEGRADED} - 31-54\% accuracy (15-34\% drop from baseline)
+    \item Cause: MobileNetV2's depthwise separable convolutions sensitive to uniform INT8
 \end{itemize}
 
 \subsubsection{Quantization-Aware Training (QAT) INT8}
 \begin{itemize}
     \item Method: tf.keras quantize\_model with QAT
-    \item Result: \textbf{FAILED} - 10.4\% accuracy (training-aware still fails)
-    \item Conclusion: INT8 fundamentally unsuitable for MobileNetV2 architecture
+    \item Result: \textbf{IMPROVED} - 35-57\% accuracy ($\sim$3\% better than PTQ)
+    \item Conclusion: QAT helps but significant degradation remains; INT8 not recommended for MobileNetV2
 \end{itemize}
 
 \subsubsection{Dynamic Range Quantization}
@@ -394,12 +396,16 @@ Four quantization methods applied to each architecture variant:
 Baseline FP32 & 88.48\% & 26.39 & Reference \\
 Latency + Dynamic Range & 65.20\% & 0.84 & [$\checkmark$] Recommended \\
 Latency + Mixed Precision & 64.60\% & 1.37 & [$\checkmark$] Good \\
-Latency + PTQ INT8 & 10.10\% & 0.95 & [$\times$] Failed \\
-Latency + QAT INT8 & 10.00\% & 0.94 & [$\times$] Failed \\
+Latency + PTQ INT8 & 31.40\% & 0.938 & [$\triangle$] Degraded \\
+Latency + QAT INT8 & 34.80\% & 0.938 & [$\triangle$] Degraded \\
 Energy + Dynamic Range & 70.40\% & 1.52 & [$\checkmark$] \textbf{Best Balance} \\
 Energy + Mixed Precision & 70.10\% & 2.64 & [$\checkmark$] Good \\
+Energy + PTQ INT8 & 53.60\% & 1.676 & [$\triangle$] Degraded \\
+Energy + QAT INT8 & 57.10\% & 1.676 & [$\triangle$] Degraded \\
 Memory Pruned + Dynamic Range & 51.40\% & 0.53 & [$\checkmark$] Most Compact \\
 Memory Pruned + Mixed Precision & 53.10\% & 0.82 & [$\checkmark$] Good \\
+Memory Pruned + PTQ INT8 & 35.95\% & 0.605 & [$\triangle$] Degraded \\
+Memory Pruned + QAT INT8 & 39.20\% & 0.605 & [$\triangle$] Degraded \\
 \hline
 \end{tabular}
 \caption{Quantization Results for All Model Variants}
@@ -693,7 +699,7 @@ Memory + DR & 1.87 & 6.31 & 111.6 & [M1-native] \\
 \subsubsection{SIMD (ARM NEON) Utilization}
 \begin{itemize}
     \item Dynamic Range quantization: 144\% efficiency (2× vectorization)
-    \item INT8 (theoretical): 306\% efficiency - \textbf{unusable due to accuracy failure}
+    \item INT8: Would achieve 306\% efficiency (4× vectorization) but accuracy degradation (15-34\% drop) limits practical use
     \item Average across valid models: 213\%
 \end{itemize}
 
@@ -815,7 +821,7 @@ Acc. vs Energy & energy\_DR & 70.4\% & 58\% less & Battery devices \\
 
 \textbf{Antagonistic Interactions:}
 \begin{itemize}
-    \item \textbf{INT8 Quantization + Depthwise Convolutions}: Uniform quantization catastrophically failed (10\% acc)
+    \item \textbf{INT8 Quantization + Depthwise Convolutions}: Uniform quantization caused significant degradation (15-34\% accuracy drop)
     \item \textbf{Aggressive Pruning + Accuracy}: >60\% sparsity caused unrecoverable accuracy degradation
 \end{itemize}
 
@@ -894,7 +900,7 @@ Acc. vs Energy & energy\_DR & 70.4\% & 58\% less & Battery devices \\
 \begin{itemize}
     \item Dynamic Range quantization: 200\% utilization (2× vectorization for FP16/INT8)
     \item Average performance improvement: 1.8× from SIMD alone
-    \item INT8 (theoretical 4× vectorization): Unusable due to accuracy collapse
+    \item INT8 (theoretical 4× vectorization): Achievable but with significant accuracy trade-offs (15-34\% drop)
 \end{itemize}
 
 \textbf{FPU Characteristics:}
@@ -1229,9 +1235,9 @@ Resolution Reduction & 2.1$\times$ & 2.1$\times$ & 2.1$\times$ & $\checkmark$ Co
 \textbf{Trend 1: NPUs (Neural Processing Units)}
 \begin{itemize}
     \item \textbf{Examples}: Apple Neural Engine, Google Edge TPU, Qualcomm Hexagon
-    \item \textbf{Impact}: INT8 becomes mandatory for NPU acceleration
-    \item \textbf{Design Change}: Must solve INT8 quantization for MobileNetV2 (current failure)
-    \item \textbf{Solution}: Explore alternative architectures (EfficientNet, MobileViT) with INT8 compatibility
+    \item \textbf{Impact}: INT8 becomes preferred for NPU acceleration
+    \item \textbf{Design Change}: Need to address INT8 accuracy degradation for MobileNetV2 (current 15-34\% drop)
+    \item \textbf{Solution}: Explore alternative architectures (EfficientNet, MobileViT) with better INT8 compatibility, or use QAT techniques
 \end{itemize}
 
 \textbf{Trend 2: In-Memory Computing}
@@ -1288,7 +1294,7 @@ Resolution Reduction & 2.1$\times$ & 2.1$\times$ & 2.1$\times$ & $\checkmark$ Co
 \begin{enumerate}
     \item \textbf{Baseline Model}: 88.48\% accuracy on CIFAR-10 (exceeds 85\% target)
     \item \textbf{Architecture Optimization}: 3 variants (latency/memory/energy) with 2-3× efficiency gains
-    \item \textbf{Quantization}: Dynamic Range recommended, INT8 fails for MobileNetV2
+    \item \textbf{Quantization}: Dynamic Range recommended; INT8 shows significant accuracy degradation (PTQ: 31-54\%, QAT: 35-57\%)
     \item \textbf{Multi-Platform}: Validated across M1 Mac, ARM Cortex-A78, ARM Cortex-M7
     \item \textbf{Pareto Analysis}: 8 optimal configurations for different use cases
     \item \textbf{Hardware Utilization}: 213\% SIMD efficiency, 93\% cache hit rate, all compute-bound
@@ -1299,7 +1305,7 @@ Resolution Reduction & 2.1$\times$ & 2.1$\times$ & 2.1$\times$ & $\checkmark$ Co
 
 \textbf{Technical}:
 \begin{itemize}
-    \item MobileNetV2's depthwise separable convolutions incompatible with INT8 quantization
+    \item MobileNetV2's depthwise separable convolutions experience significant accuracy degradation with INT8 quantization (15-34\% drop)
     \item Dynamic Range quantization provides best accuracy-efficiency trade-off
     \item Cache efficiency critical for edge deployment (model must fit in L2)
     \item All quantized models compute-bound (good for scalability)
@@ -1320,13 +1326,13 @@ Resolution Reduction & 2.1$\times$ & 2.1$\times$ & 2.1$\times$ & $\checkmark$ Co
     \item Use \textbf{energy\_Dynamic Range} for general applications (70.4\% acc, balanced)
     \item Use \textbf{latency\_Dynamic Range} for real-time requirements (65.2\% acc, 1.25ms)
     \item Use \textbf{memory\_pruned\_Dynamic Range} for MCU/IoT (51.4\% acc, 0.53MB)
-    \item \textbf{Avoid} PTQ/QAT INT8 for MobileNetV2 (catastrophic accuracy loss)
+    \item \textbf{Avoid} PTQ/QAT INT8 for MobileNetV2 unless extreme compression required (expect 15-34\% accuracy drop)
 \end{enumerate}
 
 \textbf{For Future Work}:
 \begin{enumerate}
-    \item Explore knowledge distillation to recover INT8 accuracy
-    \item Try alternative architectures (EfficientNet, MobileViT) for INT8 compatibility
+    \item Explore knowledge distillation and advanced QAT techniques to improve INT8 accuracy
+    \item Try alternative architectures (EfficientNet, MobileViT) for better INT8 compatibility
     \item Implement NPU-specific optimizations when hardware available
     \item Extend to other datasets (ImageNet, COCO) for generalization
 \end{enumerate}

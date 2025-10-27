@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1761286680.80267 "/Users/wangyucheng/Writing/mls-a3-report/mls-a3-report/main.tex" "main.pdf" "main" 1761286687.09749 0
-  "/Users/wangyucheng/Writing/mls-a3-report/mls-a3-report/main.tex" 1761286680.39286 51311 c51dc329efddb006d0ce21663a8a940a ""
+["pdflatex"] 1761562339.1674 "/Users/wangyucheng/Writing/mls-a3-report/mls-a3-report/main.tex" "main.pdf" "main" 1761562345.74279 0
+  "/Users/wangyucheng/Writing/mls-a3-report/mls-a3-report/main.tex" 1761562332.13396 52010 cc54b6ada8840b1634ff5624d9936e65 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -222,12 +222,13 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1758959881 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1758959836 3345739 1e712658ab51a1a3ff6f752bb8386c73 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
+  "charts/int8_quantization_comparison_energy.png" 1761557314.97679 312403 cd009d8a9f4c2097dcc0970418ba1f3f ""
   "charts/part1_training_curves.png" 1761192889.72394 105890 679c48465f86c0ca0e7269331b24aff6 ""
   "charts/part2_accuracy_vs_size.png" 1761192889.74753 243312 c74aa38ef4df2635fc12696dc88bbb33 ""
   "charts/part2_memory_optimizations.png" 1761192889.76203 183516 fd3ce6c186d4ad57ebdd94464c0864a5 ""
   "charts/part2_model_size_comparison.png" 1761192889.77648 187739 f568ee7481ba0d6ea876113dc222a723 ""
   "charts/part2_performance_radar.png" 1761192889.80157 617215 33c0702301616887b737549c24472304 ""
-  "charts/part2_quantization_accuracy_tradeoff.png" 1761192889.80938 338860 84b3af9eaf76fe27b6128815875369d5 ""
+  "charts/part2_quantization_accuracy_tradeoff.png" 1761557299.75496 329356 05db989d6e3d87c8a080f30ac4bd9b72 ""
   "charts/part3_latency_comparison.png" 1761192889.8223 96540 b640113c1178b486763dce86db210bf4 ""
   "charts/part3_latency_detailed.png" 1761192889.8332 102864 edca000d4868637928df5143b70dbd84 ""
   "charts/part3_model_sizes.png" 1761192889.8419 61827 ac8dcfd159d57daf169417ae04a56d2b ""
@@ -238,10 +239,10 @@
   "charts/part4_utilization_breakdown.png" 1761131395.7269 168442 b06ceb2e65426a47d61c043f0149df6b ""
   "example.py" 1761146006.90135 467 159c58b9398d49894aaaba3726567de4 ""
   "logo-hkust.png" 1761131132.16388 26308 023654fcab322d3aed5a90eefc0aaea3 ""
-  "main.aux" 1761286686.96246 10768 a0b30abb2293424e9d3a072c738d1967 "pdflatex"
-  "main.out" 1761286686.96356 1374 127567cfeda7eff787d398d01cfbb1b0 "pdflatex"
-  "main.tex" 1761286680.39286 51311 c51dc329efddb006d0ce21663a8a940a ""
-  "main.toc" 1761286686.96377 4596 38e926a850ff3ef4e37d0bdb8a0c4f6a "pdflatex"
+  "main.aux" 1761562345.60975 10769 97dce2e4de2f177178550313a8ba432b "pdflatex"
+  "main.out" 1761562345.61083 1374 127567cfeda7eff787d398d01cfbb1b0 "pdflatex"
+  "main.tex" 1761562332.13396 52010 cc54b6ada8840b1634ff5624d9936e65 ""
+  "main.toc" 1761562345.61102 4596 500abb25fb65bdd61f1cb63fc7d6f2b2 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
