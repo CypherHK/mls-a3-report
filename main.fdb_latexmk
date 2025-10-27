@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1761562339.1674 "/Users/wangyucheng/Writing/mls-a3-report/mls-a3-report/main.tex" "main.pdf" "main" 1761562345.74279 0
-  "/Users/wangyucheng/Writing/mls-a3-report/mls-a3-report/main.tex" 1761562332.13396 52010 cc54b6ada8840b1634ff5624d9936e65 ""
+["pdflatex"] 1761564194.83718 "/Users/wangyucheng/Writing/mls-a3-report/mls-a3-report/main.tex" "main.pdf" "main" 1761564201.60999 0
+  "/Users/wangyucheng/Writing/mls-a3-report/mls-a3-report/main.tex" 1761564194.53663 53004 e4154286f76c2811f3b9198787676136 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -239,10 +239,10 @@
   "charts/part4_utilization_breakdown.png" 1761131395.7269 168442 b06ceb2e65426a47d61c043f0149df6b ""
   "example.py" 1761146006.90135 467 159c58b9398d49894aaaba3726567de4 ""
   "logo-hkust.png" 1761131132.16388 26308 023654fcab322d3aed5a90eefc0aaea3 ""
-  "main.aux" 1761562345.60975 10769 97dce2e4de2f177178550313a8ba432b "pdflatex"
-  "main.out" 1761562345.61083 1374 127567cfeda7eff787d398d01cfbb1b0 "pdflatex"
-  "main.tex" 1761562332.13396 52010 cc54b6ada8840b1634ff5624d9936e65 ""
-  "main.toc" 1761562345.61102 4596 500abb25fb65bdd61f1cb63fc7d6f2b2 "pdflatex"
+  "main.aux" 1761564201.47746 10771 ff3a43025d5ff2820ac9fc300cfb07f2 "pdflatex"
+  "main.out" 1761564201.4787 1374 127567cfeda7eff787d398d01cfbb1b0 "pdflatex"
+  "main.tex" 1761564194.53663 53004 e4154286f76c2811f3b9198787676136 ""
+  "main.toc" 1761564201.47891 4598 25cd863cee73896ef5cdfce7f3276fb0 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
